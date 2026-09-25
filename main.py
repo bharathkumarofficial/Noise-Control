@@ -36,10 +36,10 @@ DEFAULT_MODERATE_MAX = 60.0
 # ---------- WARDEN EMAIL ----------
 HOSTEL_NAME = "A-Block"
 ROOM_NO = "1"
-WARDEN_EMAIL = "skbharath390@gmail.com"
+WARDEN_EMAIL = "xxxx@example.com"
 
-SENDER_EMAIL = "sbharathk390@gmail.com"
-SENDER_APP_PASSWORD = "mpfo xmli ualy gfei"  # Use an app password for Gmail
+SENDER_EMAIL = "xxxx@example.com"
+SENDER_APP_PASSWORD = "xxxxxxxxxxxxx"  # Use an app password for Gmail
 
 
 
