@@ -2,7 +2,7 @@ import smtplib
 from email.message import EmailMessage
 
 SENDER_EMAIL = "sbharathk390@gmail.com"
-SENDER_APP_PASSWORD = "mpfo xmli ualy gfei"
+SENDER_APP_PASSWORD = "xxxxxxxxxxxxxx"
 WARDEN_EMAIL = "skbharath390@gmail.com"
 
 print("Connecting to Gmail...")
