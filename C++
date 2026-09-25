@@ -1,0 +1,81 @@
+#include <WiFi.h>
+#include <WebServer.h>
+
+// ---------- Wi-Fi ----------
+const char* WIFI_SSID = "Port";
+const char* WIFI_PASSWORD = "Portable";
+
+// ---------- Room sensors ----------
+// Room 1 -> GPIO 36
+// Room 2 -> GPIO 39
+// Room 3 -> GPIO 34
+// Room 4 -> GPIO 35
+
+const int SENSOR_ROOM_1 = 36;
+const int SENSOR_ROOM_2 = 39;
+const int SENSOR_ROOM_3 = 34;
+const int SENSOR_ROOM_4 = 35;
+
+WebServer server(80);
+
+// ---------- Read sensors ----------
+void handleSensors() {
+
+  int room1 = analogRead(SENSOR_ROOM_1);
+  int room2 = analogRead(SENSOR_ROOM_2);
+  int room3 = analogRead(SENSOR_ROOM_3);
+  int room4 = analogRead(SENSOR_ROOM_4);
+
+  String json = "{";
+  json += "\"hostel\":\"A-Block\",";
+  json += "\"room1\":" + String(room1) + ",";
+  json += "\"room2\":" + String(room2) + ",";
+  json += "\"room3\":" + String(room3) + ",";
+  json += "\"room4\":" + String(room4);
+  json += "}";
+
+  server.send(200, "application/json", json);
+
+  Serial.println(json);
+}
+
+void setup() {
+
+  Serial.begin(115200);
+
+  analogReadResolution(12);
+
+  pinMode(SENSOR_ROOM_1, INPUT);
+  pinMode(SENSOR_ROOM_2, INPUT);
+  pinMode(SENSOR_ROOM_3, INPUT);
+  pinMode(SENSOR_ROOM_4, INPUT);
+
+  Serial.println();
+  Serial.println("Connecting to Wi-Fi...");
+
+  WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
+
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(500);
+    Serial.print(".");
+  }
+
+  Serial.println();
+  Serial.println("Wi-Fi connected!");
+
+  Serial.print("ESP32 IP address: ");
+  Serial.println(WiFi.localIP());
+
+  server.on("/sensors", handleSensors);
+
+  server.begin();
+
+  Serial.println("Sensor server started.");
+}
+
+void loop() {
+
+  server.handleClient();
+
+  delay(100);
+}
