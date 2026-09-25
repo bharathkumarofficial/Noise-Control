@@ -1,9 +1,9 @@
 import smtplib
 from email.message import EmailMessage
 
-SENDER_EMAIL = "sbharathk390@gmail.com"
+SENDER_EMAIL = "xxxx@example.com"
 SENDER_APP_PASSWORD = "xxxxxxxxxxxxxx"
-WARDEN_EMAIL = "skbharath390@gmail.com"
+WARDEN_EMAIL = "xxxx@example.com"
 
 print("Connecting to Gmail...")
 
